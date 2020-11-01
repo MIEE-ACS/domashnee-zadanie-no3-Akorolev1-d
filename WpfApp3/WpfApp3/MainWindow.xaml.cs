@@ -30,7 +30,9 @@ namespace WpfApp3
         {
             string allText = tb_text.Text;
 
-            if (tb_text.Text.Contains("  "))
+        
+
+            while (tb_text.Text.Contains("  "))
             {
                 allText = tb_text.Text.Replace("  ", " ");
                 tb_text.Text = tb_text.Text.Replace("  ", " ");
