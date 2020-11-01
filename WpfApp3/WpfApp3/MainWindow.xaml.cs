@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace WpfApp3
-{
+    {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -30,26 +30,42 @@ namespace WpfApp3
         {
             string allText = tb_text.Text;
 
+            while (tb_text.Text.Contains(" !"))
+            {
+                tb_text.Text = tb_text.Text.Replace(" !", "!");
+                allText = tb_text.Text.Replace(" !", "!");
+            }
+
             if (tb_text.Text.Contains("!"))
             {
                 tb_text.Text = tb_text.Text.Replace("!", "! ");
+                allText = tb_text.Text.Replace("!", "! ");
             }
 
+
+            while (tb_text.Text.Contains(" ?"))
+            {
+                tb_text.Text = tb_text.Text.Replace(" ?", "?");
+                allText = tb_text.Text.Replace(" ?", "?");
+            }
             if (tb_text.Text.Contains("?"))
             {
                 tb_text.Text = tb_text.Text.Replace("?", "? ");
+                allText = tb_text.Text.Replace("?", "? ");
             }
 
             if (tb_text.Text.Contains(": "))
             {
                 tb_text.Text = tb_text.Text.Replace(": ", ":");
-                
+                allText = tb_text.Text.Replace(": ", ":");
+
             }
 
            
             if (tb_text.Text.Contains("."))
             {
                 tb_text.Text = tb_text.Text.Replace(".", ". ");
+                allText = tb_text.Text.Replace(".", ". ");
             }
 
             while (tb_text.Text.Contains("  "))
@@ -106,22 +122,25 @@ namespace WpfApp3
             {
                 tb_text.Text = tb_text.Text.TrimStart();
             }
+            
+            
 
             string str_double = Convert.ToString(allChar[allChar.Length - 1]);
 
-            if (str_double == ":")
-            {
-                string[] textArray1 = tb_text.Text.Split(new char[] { ' ', ',', ':' });
-                tb_word.Text = Convert.ToString(textArray1.Length - 1);
-            }
-            else
-            {
+          
+           
                 string[] textArray = tb_text.Text.Split(new char[] { ' ', ',', ':' });
                 tb_word.Text = Convert.ToString(textArray.Length);
+            
+
+            if (str_double == ":"|| str_double == ",")
+            {
+                MessageBox.Show("Двоеточие или запятая в конце текста!");
+                tb_word.Text = "Error";
+                return;
             }
 
-
-
+            
         }
     }
 }
