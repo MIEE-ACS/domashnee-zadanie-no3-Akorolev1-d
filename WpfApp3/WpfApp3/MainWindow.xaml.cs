@@ -30,7 +30,27 @@ namespace WpfApp3
         {
             string allText = tb_text.Text;
 
-        
+            if (tb_text.Text.Contains("!"))
+            {
+                tb_text.Text = tb_text.Text.Replace("!", "! ");
+            }
+
+            if (tb_text.Text.Contains("?"))
+            {
+                tb_text.Text = tb_text.Text.Replace("?", "? ");
+            }
+
+            if (tb_text.Text.Contains(": "))
+            {
+                tb_text.Text = tb_text.Text.Replace(": ", ":");
+                
+            }
+
+           
+            if (tb_text.Text.Contains("."))
+            {
+                tb_text.Text = tb_text.Text.Replace(".", ". ");
+            }
 
             while (tb_text.Text.Contains("  "))
             {
@@ -54,7 +74,20 @@ namespace WpfApp3
                 tb_text.Text = tb_text.Text.Replace(" .", ".");
 
             }
-           
+            while (tb_text.Text.Contains(" :"))
+            {
+                tb_text.Text = tb_text.Text.Replace(" :", ":");
+
+            }
+            while (tb_text.Text.Contains(": "))
+            {
+                tb_text.Text = tb_text.Text.Replace(": ", ":");
+
+            }
+
+
+
+
             char[] allChar;
             allChar = allText.ToCharArray();
             char[] allChar_1 = new char[allChar.Length - 1];
@@ -74,11 +107,18 @@ namespace WpfApp3
                 tb_text.Text = tb_text.Text.TrimStart();
             }
 
+            string str_double = Convert.ToString(allChar[allChar.Length - 1]);
 
-            string[] textArray =tb_text.Text.Split(new char[] { ' ', ',' });
-
-
-            tb_word.Text = Convert.ToString(textArray.Length);
+            if (str_double == ":")
+            {
+                string[] textArray1 = tb_text.Text.Split(new char[] { ' ', ',', ':' });
+                tb_word.Text = Convert.ToString(textArray1.Length - 1);
+            }
+            else
+            {
+                string[] textArray = tb_text.Text.Split(new char[] { ' ', ',', ':' });
+                tb_word.Text = Convert.ToString(textArray.Length);
+            }
 
 
 
